@@ -21,12 +21,12 @@ orderRoutes.route('/all')
             allowedTo('admin'),
             O.getAllOrder) 
     
-
 orderRoutes.route('/checkout/:id')
     .post(protectRoutes, 
         allowedTo('user'),
         validation(S.paramsIdVal), 
         O.onlinePayment)
+        
 orderRoutes.post('/webhook', 
     express.raw({type: 'application/json'}), 
     O.createOnlineOrder)
