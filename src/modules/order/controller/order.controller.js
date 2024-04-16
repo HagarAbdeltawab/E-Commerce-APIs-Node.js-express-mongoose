@@ -100,7 +100,7 @@ export const createOnlineOrder = HandleError(
             let user = await userModel.findOne({email: e.customer_email});
             if(!user) return next(new AppError("not valid user", 400  ));
             let order = new orderModel({
-                user: e.customer_email,
+                user: user._id,
                 orderItems: cart.cartItems,
                 totalOrderPrice: e.amount_total / 100,
                 shippingAddress: e.metadata,
