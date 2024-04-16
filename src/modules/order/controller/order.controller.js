@@ -20,6 +20,10 @@ export const createOrder = HandleError(
             orderItems: cart.cartItems,
             totalOrderPrice,
             shippingAddress: req.body.shippingAddress,
+            isPaid: true,
+            paidAt: new Date(),
+            isDelivered: true,
+            deliveredAt: Date.now()
         })
         // update sold, quantity
         if(order){
@@ -53,7 +57,7 @@ export const getAllOrder = HandleError(
     });
 
 // for online order
-export const onlinePayment = HandleError(
+export const createSession = HandleError(
     async(req, res) =>{
         let cart = await cartModel.findById(req.params.id);
         let totalOrderPrice = cart.totalPriceAfterDiscount?  cart.totalPriceAfterDiscount : cart.totalPrice;

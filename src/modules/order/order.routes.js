@@ -25,7 +25,7 @@ orderRoutes.route('/checkout/:id')
     .post(protectRoutes, 
         allowedTo('user'),
         validation(S.paramsIdVal), 
-        O.onlinePayment)
+        O.createSession)
         
 orderRoutes.post('/webhook', 
     express.raw({type: 'application/json'}), 
